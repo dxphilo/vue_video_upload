@@ -1,6 +1,10 @@
 <script lang="ts">
 import { ref } from "vue";
+import VideoJsPlayer from "@/components/VideoPlayer.vue";
 export default {
+  components: {
+    VideoJsPlayer,
+  },
   setup() {
     const selectedFile = ref();
     const videoPreviewURL = ref();
@@ -49,7 +53,6 @@ export default {
         alert("Failed to upload video");
       }
     }
-
     return {
       onFileSelected,
       selectedFile,
@@ -64,25 +67,9 @@ export default {
   <div>
     <h2 class="title">Vue.js Video Upload</h2>
 
-    <video
-      v-if="videoPreviewURL"
-      id="my-video"
-      class="video-js"
-      controls
-      preload="auto"
-      width="640"
-      height="264"
-      data-setup="{}"
-    >
-      <source :src="videoPreviewURL" type="video/mp4" />
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a
-        web browser that
-        <a href="https://videojs.com/html5-video-support/" target="_blank"
-          >supports HTML5 video</a
-        >
-      </p>
-    </video>
+    <div v-if="videoPreviewURL">
+      <VideoJsPlayer :videoUrl="videoPreviewURL" />
+    </div>
 
     <main>
       <form enctype="multipart/form-data" class="form">
@@ -150,11 +137,5 @@ main {
 
 .button:hover {
   background-color: #2980b9;
-}
-.video {
-  display: block;
-  margin: 30px auto;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 </style>
