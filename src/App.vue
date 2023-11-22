@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { ref } from "vue";
 import VideoJsPlayer from "@/components/VideoPlayer.vue";
 export default {
@@ -9,10 +9,10 @@ export default {
     const selectedFile = ref();
     const videoPreviewURL = ref();
 
-    function onFileSelected(event: Event) {
+    function onFileSelected(event) {
       if (!event || !event.target) return;
 
-      const target = event.target as HTMLInputElement;
+      const target = event.target;
       if (!target.files || target.files.length === 0) {
         alert("No file selected, please choose a file to upload.");
         return;
@@ -67,7 +67,7 @@ export default {
   <div>
     <h2 class="title">Vue.js Video Upload</h2>
 
-    <div v-if="videoPreviewURL">
+    <div v-if="videoPreviewURL" class="video">
       <VideoJsPlayer :videoUrl="videoPreviewURL" />
     </div>
 
@@ -96,13 +96,19 @@ export default {
   text-align: center;
   padding: 20px 0;
 }
-
+.video {
+  width: 600px;
+  height: 267px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
 main {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 600px;
   margin: 0 auto;
+  padding-top: 50px;
 }
 
 .form {

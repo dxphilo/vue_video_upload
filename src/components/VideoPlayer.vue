@@ -1,11 +1,6 @@
 <template>
   <div>
-    <video
-      ref="videoPlayer"
-      class="video-js vjs-defaultskin"
-      width="640"
-      height="264"
-    ></video>
+    <video ref="videoPlayer" class="video-js vjs-defaultskin"></video>
   </div>
 </template>
 <script>
